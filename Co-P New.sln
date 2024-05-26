@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co-P Library", "Co-P Library\Co-P Library.csproj", "{96698718-6EA6-4088-9CBE-DD894CC96118}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co-p new  WebApi", "Co-p new  WebApi\Co-p new  WebApi.csproj", "{61D66C52-5C41-4C88-A08F-24EF8951AC28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96698718-6EA6-4088-9CBE-DD894CC96118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96698718-6EA6-4088-9CBE-DD894CC96118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96698718-6EA6-4088-9CBE-DD894CC96118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96698718-6EA6-4088-9CBE-DD894CC96118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61D66C52-5C41-4C88-A08F-24EF8951AC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61D66C52-5C41-4C88-A08F-24EF8951AC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61D66C52-5C41-4C88-A08F-24EF8951AC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61D66C52-5C41-4C88-A08F-24EF8951AC28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67C4A848-AF2A-4D5F-9713-91D04263137E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,6 @@
+@Co_p_new__WebApi_HostAddress = http://localhost:5062
+
+GET {{Co_p_new__WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
