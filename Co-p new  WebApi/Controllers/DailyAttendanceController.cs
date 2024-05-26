@@ -25,6 +25,16 @@ namespace Co_p_new__WebApi.Controllers
             return attendace;
         }
 
+        [HttpGet]
+        [Route("CountAttendance")]
+        public dynamic CountAttendance() 
+        { 
+            var kids = db.Children.Count();
+            var Attendance = db.DailyAttendances.Where(x=>x.AttendanceDate == DateTime.Today && x.MorningPresence == 1 && x.AfternoonPresence == 0).Count();
+            return ($"{Attendance} / {kids}");
+        }
+
+
         [HttpPost]
         [Route("AddMorningPresence")]
         public dynamic addMorningPresence(string childID, int MorningP)
@@ -54,6 +64,8 @@ namespace Co_p_new__WebApi.Controllers
             return DA;
 
         }
+
+
 
 
     }
