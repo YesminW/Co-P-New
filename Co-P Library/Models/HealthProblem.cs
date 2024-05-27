@@ -8,11 +8,7 @@ public partial class HealthProblem
     public int HealthProblemsNumber { get; set; }
 
     public string HealthProblemName { get; set; } = null!;
-
-    public int Severity { get; set; }
-
-    public string? Care { get; set; }
-
+  
     public virtual ICollection<Child> Children { get; set; } = new List<Child>();
 
     public virtual ICollection<StaffMember> Users { get; set; } = new List<StaffMember>();
