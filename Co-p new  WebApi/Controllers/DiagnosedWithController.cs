@@ -28,14 +28,7 @@ namespace Co_p_new__WebApi.Controllers
                 db.DiagnosedWith.Add(D);
                 db.SaveChanges();
                 return Ok(D);
-
-
-
             }
-
-               
-            
-            
         }
 
     }
