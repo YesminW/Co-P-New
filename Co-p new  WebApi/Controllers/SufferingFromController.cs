@@ -9,10 +9,10 @@ namespace Co_p_new__WebApi.Controllers
         CoPNewContext db = new CoPNewContext();
 
         [HttpPut]
-        [Route("AddHealthProblem")]
+        [Route("AddHealthProblemtouser")]
         public dynamic AddHealthProblem(string ID, int healthproblem, int Severity, string care)
         {
-           User? u = db.Users.Where(x => x.UserId == ID).FirstOrDefault();    
+            User? u = db.Users.Where(x => x.UserId == ID).FirstOrDefault();
             if (u == null)
             {
                 return NotFound(new { message = "User not found" });

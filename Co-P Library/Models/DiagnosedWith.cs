@@ -11,5 +11,7 @@ namespace Co_P_Library.Models
         public int Severity { get; set; }
 
         public string? Care { get; set; }
+        public virtual Child Child { get; set; } = null!;
+
     }
 }

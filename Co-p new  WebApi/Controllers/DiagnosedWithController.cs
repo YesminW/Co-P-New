@@ -10,20 +10,22 @@ namespace Co_p_new__WebApi.Controllers
 
         [HttpPut]
         [Route("AddHealthProblem")]
-        public dynamic AddHealthProblem(string ID, int healthproblem, int Severity, string care)
+        public IActionResult AddHealthProblem(string ID, int healthproblem, int Severity, string care)
         {
-            Child? c = db.Children.Where(x => x.Parent1 == ID || x.Parent2 == ID).FirstOrDefault();
+            var c = db.Children.FirstOrDefault(x => x.Parent1 == ID || x.Parent2 == ID);
             if (c == null)
             {
                 return NotFound(new { message = "child not found" });
             }
             else
             {
-                DiagnosedWith D = new DiagnosedWith();
-                D.ChildId = c.ChildId;
-                D.HealthProblemsNumber = healthproblem;
-                D.Severity = Severity;
-                D.Care = care;
+                DiagnosedWith D = new DiagnosedWith
+                {
+                    ChildId = c.ChildId,
+                    HealthProblemsNumber = healthproblem,
+                    Severity = Severity,
+                    Care = care
+                };
 
                 db.DiagnosedWith.Add(D);
                 db.SaveChanges();
