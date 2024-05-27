@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co-P Library", "Co-P Library\Co-P Library.csproj", "{96698718-6EA6-4088-9CBE-DD894CC96118}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Co-P Library", "Co-P Library\Co-P Library.csproj", "{96698718-6EA6-4088-9CBE-DD894CC96118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Co-p new  WebApi", "Co-p new  WebApi\Co-p new  WebApi.csproj", "{61D66C52-5C41-4C88-A08F-24EF8951AC28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Co-p new  WebApi", "Co-p new  WebApi\Co-p new  WebApi.csproj", "{61D66C52-5C41-4C88-A08F-24EF8951AC28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
