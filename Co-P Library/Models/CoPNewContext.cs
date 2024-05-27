@@ -50,8 +50,6 @@ public partial class CoPNewContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserInKindergarten> UserInKindergartens { get; set; }
-    public virtual DbSet<DiagnosedWith> DiagnosedWith { get; set; }
-    public virtual DbSet<SufferingFrom> SufferingFrom { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -525,12 +523,8 @@ public partial class CoPNewContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__User in K__UserI__2610A626");
         });
-        modelBuilder.Entity<DiagnosedWith>()
-           .HasKey(d => new { d.ChildId, d.HealthProblemsNumber });
-
         OnModelCreatingPartial(modelBuilder);
-        modelBuilder.Entity<SufferingFrom>()
-           .HasKey(s => new { s.users, s.HealthProblemsNumber });
+        
 
         OnModelCreatingPartial(modelBuilder);
     }
