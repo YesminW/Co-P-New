@@ -529,6 +529,10 @@ public partial class CoPNewContext : DbContext
            .HasKey(d => new { d.ChildId, d.HealthProblemsNumber });
 
         OnModelCreatingPartial(modelBuilder);
+        modelBuilder.Entity<SufferingFrom>()
+           .HasKey(s => new { s.users, s.HealthProblemsNumber });
+
+        OnModelCreatingPartial(modelBuilder);
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
