@@ -1,6 +1,9 @@
-﻿namespace Co_p_new__WebApi.DTO
+﻿using System;
+using System.Collections.Generic;
+
+namespace Co_P_Library.Models
 {
-    public class Diagnosed_WithDTO
+    public partial class DiagnosedWith
     {
         public string ChildId { get; set; } = null!;
         public int HealthProblemsNumber { get; set; }

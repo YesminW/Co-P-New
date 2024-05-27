@@ -31,8 +31,10 @@ namespace Co_p_new__WebApi.Controllers
             db.Children.Add(c);
             db.SaveChanges();
             return Ok(c);
-
         }
+
+   
+
 
     }
 }

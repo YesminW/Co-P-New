@@ -7,6 +7,8 @@ namespace Co_p_new__WebApi.Controllers
     public class UserController : Controller
     {
         CoPNewContext db = new CoPNewContext();
+
+
         [HttpGet]
         [Route("getAll")]
         public dynamic GetAllUsers()
