@@ -58,5 +58,43 @@ namespace Co_p_new__WebApi.Controllers
             return Ok(u);
         }
 
+
+        [HttpPut]
+        [Route("updateUser")]
+        public dynamic updateUser(string ID, string Email, string address, string password, string phonenum, string gender)
+        {
+            User? u = db.Users.Where(x=> x.UserId == ID).FirstOrDefault();
+            if (u != null)
+            {
+                if (Email != null)
+                {
+                    u.UserEmail = Email;
+                }
+                if (address != null)
+                {
+                    u.UserAddress = address;
+                }
+                if (password != null)
+                {
+                    u.UserpPassword = password;
+                }
+                if (phonenum != null)
+                {
+                    u.UserPhoneNumber = phonenum;
+                }
+                if (gender != null)
+                {
+                    u.UserGender = gender;
+                }
+                db.SaveChanges ();
+                return Ok(u);
+            }
+            else
+            {
+                return NotFound(new { message = "User not found" });
+            }
+
+        }
+
     }
 }
