@@ -1,8 +1,10 @@
 ﻿using Co_P_Library.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Co_p_new__WebApi.Controllers
 {
+    [EnableCors]
     public class ChildController : Controller
     {
         CoPNewContext db = new CoPNewContext();

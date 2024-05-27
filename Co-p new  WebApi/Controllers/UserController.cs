@@ -1,9 +1,12 @@
 ﻿using Co_P_Library.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
 
 namespace Co_p_new__WebApi.Controllers
 {
+    [EnableCors]
+
     public class UserController : Controller
     {
         CoPNewContext db = new CoPNewContext();
