@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace Co_P_Library.Models;
+
 
 public partial class Child
 {
@@ -22,6 +23,8 @@ public partial class Child
 
     public virtual ICollection<DailyAttendance> DailyAttendances { get; set; } = new List<DailyAttendance>();
 
+    public virtual ICollection<DiagnosedWith> DiagnosedWiths { get; set; } = new List<DiagnosedWith>();
+
     public virtual ICollection<Duty> DutyChild1Navigations { get; set; } = new List<Duty>();
 
     public virtual ICollection<Duty> DutyChild2Navigations { get; set; } = new List<Duty>();
@@ -31,6 +34,4 @@ public partial class Child
     public virtual Parent Parent2Navigation { get; set; } = null!;
 
     public virtual ICollection<RegisterdTo> RegisterdTos { get; set; } = new List<RegisterdTo>();
-
-    public virtual ICollection<HealthProblem> HealthProblemsNumbers { get; set; } = new List<HealthProblem>();
 }

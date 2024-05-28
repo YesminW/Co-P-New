@@ -29,6 +29,8 @@ public partial class CoPNewContext : DbContext
 
     public virtual DbSet<DaySummary> DaySummaries { get; set; }
 
+    public virtual DbSet<DiagnosedWith> DiagnosedWiths { get; set; }
+
     public virtual DbSet<Duty> Duties { get; set; }
 
     public virtual DbSet<HealthProblem> HealthProblems { get; set; }
@@ -47,13 +49,14 @@ public partial class CoPNewContext : DbContext
 
     public virtual DbSet<StaffMember> StaffMembers { get; set; }
 
+    public virtual DbSet<SufferingFrom> SufferingFroms { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserInKindergarten> UserInKindergartens { get; set; }
 
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server= Yasmin;Database=Co-p new;Trusted_Connection=True;Encrypt=false");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -99,7 +102,6 @@ public partial class CoPNewContext : DbContext
 
             entity.ToTable("Actual Activity");
 
-            entity.Property(e => e.ActivityDate).HasColumnType("date");
             entity.Property(e => e.Equipment).HasMaxLength(250);
 
             entity.HasOne(d => d.ActivityNumberNavigation).WithMany(p => p.ActualActivities)
@@ -165,28 +167,6 @@ public partial class CoPNewContext : DbContext
                 .HasForeignKey(d => d.Parent2)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Child__Parent_2__078C1F06");
-
-            entity.HasMany(d => d.HealthProblemsNumbers).WithMany(p => p.Children)
-                .UsingEntity<Dictionary<string, object>>(
-                    "DiagnosedWith",
-                    r => r.HasOne<HealthProblem>().WithMany()
-                        .HasForeignKey("HealthProblemsNumber")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Diagnosed__Healt__32767D0B"),
-                    l => l.HasOne<Child>().WithMany()
-                        .HasForeignKey("ChildId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Diagnosed__Child__318258D2"),
-                    j =>
-                    {
-                        j.HasKey("ChildId", "HealthProblemsNumber").HasName("PK__Diagnose__BB2FE8CBDFE80A21");
-                        j.ToTable("Diagnosed With");
-                        j.IndexerProperty<string>("ChildId")
-                            .HasMaxLength(9)
-                            .IsUnicode(false)
-                            .IsFixedLength()
-                            .HasColumnName("ChildID");
-                    });
         });
 
         modelBuilder.Entity<DailyAttendance>(entity =>
@@ -195,19 +175,15 @@ public partial class CoPNewContext : DbContext
 
             entity.ToTable("DailyAttendance");
 
-            entity.HasIndex(e => new { e.ChildId, e.AttendanceDate }, "UQ__DailyAtt__C98980E71C1632A6").IsUnique();
-
             entity.Property(e => e.DailyAttendanceId).HasColumnName("DailyAttendanceID");
             entity.Property(e => e.ChildId)
                 .HasMaxLength(9)
                 .IsUnicode(false)
                 .IsFixedLength()
                 .HasColumnName("ChildID");
-            entity.Property(e => e.AttendanceDate).HasColumnType("datetime");
 
             entity.HasOne(d => d.AfternoonPresenceNavigation).WithMany(p => p.DailyAttendanceAfternoonPresenceNavigations)
                 .HasForeignKey(d => d.AfternoonPresence)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__DailyAtte__After__0D44F85C");
 
             entity.HasOne(d => d.Child).WithMany(p => p.DailyAttendances)
@@ -217,7 +193,6 @@ public partial class CoPNewContext : DbContext
 
             entity.HasOne(d => d.MorningPresenceNavigation).WithMany(p => p.DailyAttendanceMorningPresenceNavigations)
                 .HasForeignKey(d => d.MorningPresence)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__DailyAtte__Morni__0C50D423");
         });
 
@@ -240,6 +215,32 @@ public partial class CoPNewContext : DbContext
                 .HasForeignKey(d => d.KindergartenNumber)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Day Summa__Kinde__19AACF41");
+        });
+
+        modelBuilder.Entity<DiagnosedWith>(entity =>
+        {
+            entity.HasKey(e => new { e.ChildId, e.HealthProblemsNumber }).HasName("PK__Diagnose__BB2FE8CBDFE80A21");
+
+            entity.ToTable("Diagnosed With");
+
+            entity.Property(e => e.ChildId)
+                .HasMaxLength(9)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("ChildID");
+            entity.Property(e => e.Care)
+                .HasMaxLength(500)
+                .HasColumnName("care");
+
+            entity.HasOne(d => d.Child).WithMany(p => p.DiagnosedWiths)
+                .HasForeignKey(d => d.ChildId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Diagnosed__Child__318258D2");
+
+            entity.HasOne(d => d.HealthProblemsNumberNavigation).WithMany(p => p.DiagnosedWiths)
+                .HasForeignKey(d => d.HealthProblemsNumber)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Diagnosed__Healt__32767D0B");
         });
 
         modelBuilder.Entity<Duty>(entity =>
@@ -287,6 +288,7 @@ public partial class CoPNewContext : DbContext
 
             entity.ToTable("Health Problems");
 
+            entity.Property(e => e.HealthProblemName).HasMaxLength(20);
         });
 
         modelBuilder.Entity<Interest>(entity =>
@@ -419,28 +421,32 @@ public partial class CoPNewContext : DbContext
                 .HasForeignKey<StaffMember>(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__staff mem__UserI__02C769E9");
+        });
 
-            entity.HasMany(d => d.HealthProblemsNumbers).WithMany(p => p.Users)
-                .UsingEntity<Dictionary<string, object>>(
-                    "SufferingFrom",
-                    r => r.HasOne<HealthProblem>().WithMany()
-                        .HasForeignKey("HealthProblemsNumber")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Suffering__Healt__36470DEF"),
-                    l => l.HasOne<StaffMember>().WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("FK__Suffering__UserI__3552E9B6"),
-                    j =>
-                    {
-                        j.HasKey("UserId", "HealthProblemsNumber").HasName("PK__Sufferin__125D2351E3112990");
-                        j.ToTable("Suffering From");
-                        j.IndexerProperty<string>("UserId")
-                            .HasMaxLength(9)
-                            .IsUnicode(false)
-                            .IsFixedLength()
-                            .HasColumnName("UserID");
-                    });
+        modelBuilder.Entity<SufferingFrom>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.HealthProblemsNumber }).HasName("PK__Sufferin__125D2351E3112990");
+
+            entity.ToTable("Suffering From");
+
+            entity.Property(e => e.UserId)
+                .HasMaxLength(9)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("UserID");
+            entity.Property(e => e.Care)
+                .HasMaxLength(500)
+                .HasColumnName("care");
+
+            entity.HasOne(d => d.HealthProblemsNumberNavigation).WithMany(p => p.SufferingFroms)
+                .HasForeignKey(d => d.HealthProblemsNumber)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Suffering__Healt__36470DEF");
+
+            entity.HasOne(d => d.User).WithMany(p => p.SufferingFroms)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__Suffering__UserI__3552E9B6");
         });
 
         modelBuilder.Entity<User>(entity =>
@@ -523,8 +529,6 @@ public partial class CoPNewContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__User in K__UserI__2610A626");
         });
-        OnModelCreatingPartial(modelBuilder);
-        
 
         OnModelCreatingPartial(modelBuilder);
     }
