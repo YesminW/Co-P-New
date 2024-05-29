@@ -16,13 +16,13 @@ namespace Co_p_new_WebApi.Controllers
             var childrenWithHealthProblems = db.DiagnosedWiths
                 .Select(dw => new
                 {
-                    ChildId = dw.ChildId,
+                    dw.ChildId,
                     ChildName = dw.Child.ChildFirstName + " " + dw.Child.ChildSurname,
-                    KindergartenName = dw.Child.RegisterdTos.FirstOrDefault().KindergartenNumberNavigation.KindergartenName,
-                    CurrentAcademicYear = dw.Child.RegisterdTos.FirstOrDefault().CurrentAcademicYear,
-                    HealthProblemName = dw.HealthProblem.HealthProblemName,
-                    Severity = dw.Severity,
-                    Care = dw.Care
+                    dw.Child.RegisterdTos.FirstOrDefault().KindergartenNumberNavigation.KindergartenName,
+                    dw.Child.RegisterdTos.FirstOrDefault().CurrentAcademicYear,
+                    dw.HealthProblem.HealthProblemName,
+                    dw.Severity,
+                    dw.Care
                 })
                 .ToList();
 

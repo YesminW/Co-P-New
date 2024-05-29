@@ -7,10 +7,8 @@ namespace Co_P_Library.Models;
 public partial class DiagnosedWith
 {
     public string ChildId { get; set; } = null!;
-    public string ChildName{ get; set; } = null!;
 
     public int HealthProblemsNumber { get; set; }
-    public int HealthProblemsName { get; set; }
 
     public int Severity { get; set; }
 
