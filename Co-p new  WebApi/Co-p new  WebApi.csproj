@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Co-P Library\Co-P Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="uploads\" />
+  </ItemGroup>
+
 </Project>

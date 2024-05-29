@@ -14,6 +14,6 @@ public partial class RegisterdTo
     public virtual Child Child { get; set; } = null!;
 
     public virtual AcademicYear CurrentAcademicYearNavigation { get; set; } = null!;
-
+  
     public virtual Kindergarten KindergartenNumberNavigation { get; set; } = null!;
 }

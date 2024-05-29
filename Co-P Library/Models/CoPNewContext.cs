@@ -236,11 +236,6 @@ public partial class CoPNewContext : DbContext
                 .HasForeignKey(d => d.ChildId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Diagnosed__Child__318258D2");
-
-            entity.HasOne(d => d.HealthProblemsNumberNavigation).WithMany(p => p.DiagnosedWiths)
-                .HasForeignKey(d => d.HealthProblemsNumber)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Diagnosed__Healt__32767D0B");
         });
 
         modelBuilder.Entity<Duty>(entity =>

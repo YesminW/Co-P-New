@@ -20,6 +20,8 @@ public partial class Child
     public string Parent1 { get; set; } = null!;
 
     public string Parent2 { get; set; } = null!;
+    public string? PhotoName { get; set; }
+
 
     public virtual ICollection<DailyAttendance> DailyAttendances { get; set; } = new List<DailyAttendance>();
 
@@ -34,4 +36,5 @@ public partial class Child
     public virtual Parent Parent2Navigation { get; set; } = null!;
 
     public virtual ICollection<RegisterdTo> RegisterdTos { get; set; } = new List<RegisterdTo>();
+
 }

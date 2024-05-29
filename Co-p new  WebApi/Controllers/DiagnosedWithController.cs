@@ -1,5 +1,4 @@
 ﻿using Co_P_Library.Models;
-using Co_p_new__WebApi.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,22 +10,43 @@ namespace Co_p_new_WebApi.Controllers
         CoPNewContext db = new CoPNewContext();
 
         [HttpGet]
-        [Route("GetAll")]
-        public dynamic GetChildHealthProblemsByKindergarten()
+        [Route("GetAllDiagnosed")]
+        public IActionResult GetChildrenWithHealthProblems()
         {
-            var diagnosed = db.DiagnosedWiths.Select(d => new DiagnosedWith()
-            {
-                ChildId = d.ChildId,
-                HealthProblemsNumber = d.HealthProblemsNumber,
-                Severity = d.Severity,
-                Care = d.Care
-            });
+            var childrenWithHealthProblems = db.DiagnosedWiths
+                .Select(dw => new
+                {
+                    ChildId = dw.ChildId,
+                    ChildName = dw.Child.ChildFirstName + " " + dw.Child.ChildSurname,
+                    KindergartenName = dw.Child.RegisterdTos.FirstOrDefault().KindergartenNumberNavigation.KindergartenName,
+                    CurrentAcademicYear = dw.Child.RegisterdTos.FirstOrDefault().CurrentAcademicYear,
+                    HealthProblemName = dw.HealthProblem.HealthProblemName,
+                    Severity = dw.Severity,
+                    Care = dw.Care
+                })
+                .ToList();
 
-            return diagnosed;
-            
+            return Ok(childrenWithHealthProblems);
         }
 
-      
+        [HttpGet]
+        [Route("GetChildHealthProblemsbyKindergarten")]
+        public IActionResult GetByKindergartenName(string kindergartenName, int year)
+        {
+            var diagnosedChildren = db.RegisterdTos
+                .Where(r => r.KindergartenNumberNavigation.KindergartenName == kindergartenName && r.CurrentAcademicYear == year)
+                .SelectMany(r => r.Child.DiagnosedWiths.Select(dw => new
+                {
+                    ChildId = r.ChildId,
+                    ChildName = r.Child.ChildFirstName + " " + r.Child.ChildSurname,
+                    HealthProblemsName = dw.HealthProblem.HealthProblemName,
+                    Severity = dw.Severity,
+                    Care = dw.Care
+                }))
+                .ToList();
+
+            return Ok(diagnosedChildren);
+        }
 
         [HttpPost]
         [Route("Add")]
