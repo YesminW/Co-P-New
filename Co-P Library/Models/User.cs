@@ -24,6 +24,7 @@ public partial class User
     public string UserpPassword { get; set; } = null!;
 
     public int UserCode { get; set; }
+    public string UserPhotoName { get; set; } = null!;
 
     public virtual Parent? Parent { get; set; }
 

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.19" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.19">
       <PrivateAssets>all</PrivateAssets>

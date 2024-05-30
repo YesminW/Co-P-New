@@ -23,5 +23,5 @@ public partial class ActualActivity
 
     public virtual Kindergarten KindergartenNumberNavigation { get; set; } = null!;
 
-    public virtual Meal MealNumberNavigation { get; set; }
+    public virtual Meal? MealNumberNavigation { get; set; }
 }
