@@ -1,0 +1,35 @@
+.login-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.logo img {
+  width: 250px;
+}
+
+.loginh1 {
+  color: #07676D;
+  font-family: 'Karantina', cursive;
+  font-size: 58px;
+  margin: 0;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.btn {
+  background-color: rgba(7, 103, 109, 0.6);
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 40px;
+  margin: 10px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  font-family: 'Karantina', cursive;
+}
