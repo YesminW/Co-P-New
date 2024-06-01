@@ -7,7 +7,7 @@ import Elogo from '../../Elements/Elogo'
 
 
 export default function LoginManage() {
-    const [mail, setUsername] = useState('');
+    const [mail, setMail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [users, setUsers] = useState([]);
@@ -46,27 +46,29 @@ export default function LoginManage() {
 
 
     return (
-        <div className="login-container">
+        <div>
             {Elogo}
             <br />
-            <FormControl fullWidth margin="normal">
+            <FormControl fullWidth margin="normal" style={{ width: '80%' }}>
                 <TextField
-                    id='mail'
-                    label='מייל'
-                    name='mail'
-                    type='text'
+                    id="mail"
+                    label="מייל"
+                    name="mail"
+                    type="text"
                     variant="outlined"
                     value={mail}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => setMail(e.target.value)}
+                    className="custom-textfield"
                 />
             </FormControl>
-            <FormControl fullWidth margin="normal">
+            <FormControl fullWidth margin="normal"  style={{ width: '80%' }}>
                 <TextField
                     id="password"
                     label="סיסמא"
                     name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className="custom-textfield"
                     type={showPassword ? 'text' : 'password'}
                     InputProps={{
                         endAdornment: (
@@ -85,9 +87,9 @@ export default function LoginManage() {
                 />
             </FormControl>
             <div className="buttons">
-                <button className="btn" onClick={loginUser}>כניסה</button>
+                <button className="custom-btn" onClick={loginUser}>כניסה</button>
                 <Link to="/ManagerRegister">
-                    <button className="btn">הרשמה</button>
+                    <button className="custom-btn">הרשמה</button>
                 </Link>
             </div>
             {error && <p style={{ color: '#6196A6' }}>{error}</p>}

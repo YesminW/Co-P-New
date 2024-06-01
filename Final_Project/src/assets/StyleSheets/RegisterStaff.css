@@ -7,22 +7,4 @@
     margin-bottom: 20px;
   }
   
-  .MuiTypography-root {
-    text-align: center;
-    color: #333;
-  }
-  
-  .MuiTextField-root {
-    background-color: #fff;
-    border-radius: 4px;
-  }
-  
-  .MuiButton-containedPrimary {
-    background-color: #86b3c2;
-    color: #fff;
-  }
-  
-  .MuiButton-containedPrimary:hover {
-    background-color: #75a1b1;
-  }
   
