@@ -6,7 +6,7 @@ import '../../assets/StyleSheets/EditProfileP.css';
 
 export default function EditProfile() {
     return (
-        <div className="main-content">
+        <div>
             <form className="bootstrap-edit-profile-container">
                 <h2 className="bootstrap-edit-profile-header"> עריכת פרטים</h2>
                 <Link to="/personal-details/or" className="btn btn-primary bootstrap-edit-profile-button">

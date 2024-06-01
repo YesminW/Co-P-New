@@ -3,12 +3,12 @@
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  margin-bottom: 80px; /* השאר מקום ל-footer */
   width: 90%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 85vh;
 }
 
 .bootstrap-edit-profile-header {
@@ -17,6 +17,10 @@
   color: white;
   font-size: 48px;
   margin-bottom: 20px;
+  position: relative; /* מיקום יחסי כדי להבטיח שהיא צמודה לראש ההורה */
+  top: 0; /* מיקום העליון לראש */
+  padding-top: 0; /* הסרת ה-padding העליון */
+
 }
 
 .bootstrap-edit-profile-button {
@@ -26,7 +30,7 @@
   background-color: #A3C6C9;
   border-color: #A3C6C9;
   color: white;
-  font-size: 24px;
+  font-size: 48px;
   padding: 10px 0; /* הגדלת הכפתורים אנכית */
   text-align: center; /* לוודא שהטקסט ממורכז */
 }

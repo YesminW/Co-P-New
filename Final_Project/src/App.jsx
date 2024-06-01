@@ -21,6 +21,8 @@ import Presence from './components/StaffMember/Presence'
 import LogInParent from './components/Parents/LogInParent'
 import MainParent from './components/Parents/MainParent'
 import EditProfile from './components/Parents/EditProfile'
+import EditProfileChild from './components/Parents/EditProfileChild'
+import EditProfileParent from './components/Parents/EditProfileParent'
 
 import './assets/StyleSheets/Register.css'
 import './assets/StyleSheets/Main.css'
@@ -64,6 +66,8 @@ function App() {
           <Route path='/LogInParent' element={<LogInParent />} />
           <Route path='/MainParent' element={<MainParent />} />
           <Route path='/EditProfile' element={<EditProfile />} />
+          <Route path='/EditProfileChild' element={<EditProfileChild />} />
+          <Route path='/EditProfileParent' element={<EditProfileParent />} />
 
         </Routes>
       </div>
