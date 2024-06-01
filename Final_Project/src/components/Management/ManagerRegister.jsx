@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { TextField, Button, MenuItem, FormControl, InputLabel, Select } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 
 export default function ManagerRegister() {
     const [errors, setErrors] = useState({});
@@ -89,12 +91,12 @@ export default function ManagerRegister() {
 
 
     return (
-        <form >
-            <h2 style={{ textAlign: 'center', margin: '20px 0', color: '#00838f', fontSize: '48px' }}>הרשמה</h2>
-            <div style={{ backgroundColor: '#cce7e8', padding: 10, borderRadius: 5, marginBottom: 30 }}>
+        <form>
+            <h2 className='registerh2'>הרשמה</h2>
+            <div className='registerdiv'>
                 <h2 style={{ textAlign: 'center', margin: 0 }}>פרטים אישיים</h2>
             </div>
-            <FormControl fullWidth margin="normal">
+            <FormControl fullWidth margin="normal" style={{ width: '120%' }}>
                 <TextField
                     label="שם פרטי"
                     name="firstName"
@@ -102,10 +104,10 @@ export default function ManagerRegister() {
                     onChange={handleChange}
                     error={!!errors.firstName}
                     helperText={errors.firstName}
+                    className='register-textfield'
                     variant="outlined"
                 />
-            </FormControl>
-            <FormControl fullWidth margin="normal">
+                <br />
                 <TextField
                     label="שם משפחה"
                     name="lastName"
@@ -113,12 +115,11 @@ export default function ManagerRegister() {
                     onChange={handleChange}
                     error={!!errors.lastName}
                     helperText={errors.lastName}
+                    className='register-textfield'
                     variant="outlined"
                 />
-            </FormControl>
-            <FormControl fullWidth margin="normal">
+                <br />
                 <TextField
-                    label="תאריך לידה"
                     name="birthDate"
                     type="date"
                     value={formValues.birthDate}
@@ -126,10 +127,34 @@ export default function ManagerRegister() {
                     error={!!errors.birthDate}
                     helperText={errors.birthDate}
                     InputLabelProps={{ shrink: true }}
+                    className='register-textfield'
                     variant="outlined"
                 />
+                <Button
+                    component="label"
+                    role={undefined}
+                    variant="contained"
+                    tabIndex={0}
+                    startIcon={<CloudUploadIcon />}
+                    sx={{
+                        margin: '20px',
+                        backgroundColor: '#076871',
+                        '&:hover': {
+                            backgroundColor: '#6196A6',
+                        }
+                    }}        >
+                    העלאת תמונת פרופיל
+                    <input
+                        type="file"
+                        name="file"
+                        style={{ display: 'none' }}
+                        accept="image/png, image/jpeg"
+                        onChange={handleChange}
+                    />
+                </Button>
+                {errors.profilePicture && <p>{errors.profilePicture}</p>}
             </FormControl>
-            <FormControl fullWidth margin="normal">
+            <FormControl fullWidth margin="normal" style={{ width: '120%' }}>
                 <InputLabel id="gender-label">מין</InputLabel>
                 <Select
                     labelId="gender-label"
@@ -137,6 +162,7 @@ export default function ManagerRegister() {
                     value={formValues.gender}
                     onChange={handleChange}
                     error={!!errors.gender}
+                    className='register-textfield'
                 >
                     <MenuItem value=""><em>בחר</em></MenuItem>
                     <MenuItem value="male">זכר</MenuItem>
@@ -144,22 +170,6 @@ export default function ManagerRegister() {
                     <MenuItem value="other">אחר</MenuItem>
                 </Select>
                 {errors.gender && <p>{errors.gender}</p>}
-            </FormControl>
-            <FormControl fullWidth margin="normal">
-                <input
-                    accept="image/jpeg,image/jpg"
-                    type="file"
-                    onChange={handleChange}
-                    style={{ display: 'none' }}
-                    id="profilePicture"
-                    name='file'
-                />
-                <label htmlFor="profilePicture">
-                    <Button variant="contained" component="span" color="primary">
-                        העלאת תמונת פרופיל
-                    </Button>
-                </label>
-                {errors.profilePicture && <p>{errors.profilePicture}</p>}
             </FormControl>
             <Button type="submit" variant="contained" onClick={handleSubmit}>
                 המשך

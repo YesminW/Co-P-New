@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, FormControl, InputAdornment, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+
 
 export default function AdditionalRegistrationForm(props) {
     const [errors, setErrors] = useState({});
@@ -100,9 +102,9 @@ export default function AdditionalRegistrationForm(props) {
     };
 
     return (
-        <form onSubmit={handleSubmit} noValidate className="register-form">
-            <h2 style={{ textAlign: 'center', margin: '20px 0', color: '#00838f', fontSize: '48px' }}>הרשמה</h2>
-            <div style={{ backgroundColor: '#cce7e8', padding: 10, borderRadius: 5, marginBottom: 30 }}>
+        <form onSubmit={handleSubmit} noValidate>
+            <h2 className='registerh2'>הרשמה</h2>
+            <div className='registerdiv'>
                 <h2 style={{ textAlign: 'center', margin: 0 }}>פרטים אישיים</h2>
             </div>
             <FormControl fullWidth margin="normal">
@@ -113,6 +115,7 @@ export default function AdditionalRegistrationForm(props) {
                     onChange={handleChange}
                     error={!!errors.phoneNumber}
                     helperText={errors.phoneNumber}
+                    className='register-textfield'
                     variant="outlined"
                 />
             </FormControl>
@@ -124,6 +127,7 @@ export default function AdditionalRegistrationForm(props) {
                     onChange={handleChange}
                     error={!!errors.address}
                     helperText={errors.address}
+                    className='register-textfield'
                     variant="outlined"
                 />
             </FormControl>
@@ -135,6 +139,7 @@ export default function AdditionalRegistrationForm(props) {
                     onChange={handleChange}
                     error={!!errors.email}
                     helperText={errors.email}
+                    className='register-textfield'
                     variant="outlined"
                 />
             </FormControl>
@@ -145,6 +150,7 @@ export default function AdditionalRegistrationForm(props) {
                     name="password"
                     value={formValues.password}
                     onChange={handleChange}
+                    className='register-textfield'
                     type={showPassword ? 'text' : 'password'}
                     InputProps={{
                         endAdornment: (
@@ -160,22 +166,31 @@ export default function AdditionalRegistrationForm(props) {
                             </InputAdornment>
                         ),
                     }}
-                />
+                /> 
             </FormControl>
             <FormControl fullWidth margin="normal">
-                <input
-                    accept="application/pdf"
-                    type="file"
-                    onChange={handleChange}
-                    style={{ display: 'none' }}
-                    id="documentUpload"
-                    name="file"
-                />
-                <label htmlFor="documentUpload">
-                    <Button variant="contained" component="span" color="primary">
-                        העלאת מסמכים
-                    </Button>
-                </label>
+            <Button
+                    component="label"
+                    role={undefined}
+                    variant="contained"
+                    tabIndex={0}
+                    startIcon={<CloudUploadIcon />}
+                    sx={{
+                        margin: '20px',
+                        backgroundColor: '#076871',
+                        '&:hover': {
+                            backgroundColor: '#6196A6',
+                        }
+                    }}        >
+                    העלאת תמונת פרופיל
+                    <input
+                        type="file"
+                        name="file"
+                        style={{ display: 'none' }}
+                        accept="application/pdf"
+                        onChange={handleChange}
+                    />
+                </Button>
                 {errors.file && <p>{errors.file}</p>}
             </FormControl>
             <Button type="submit" variant="contained" color="primary">
