@@ -1,9 +1,11 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Efooter from '../../Elements/Efooter';
+import Efooterp from '../../Elements/EfooterP';
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
-import '../../assets/StyleSheets/RegisterStaff.css';
+import '../../assets/StyleSheets/Register.css';
 
 export default function EditProfileChild() {
     const navigate = useNavigate();
@@ -28,31 +30,23 @@ export default function EditProfileChild() {
         }
     }, []);
 
-    const handlePhoneNumberChange = (event) => {
-        setDetails((prevDetails) => ({
-            ...prevDetails,
-            phoneNumber: event.target.value,
-        }));
-    };
-
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
         if (file && (file.type === 'image/jpeg' || file.type === 'image/jpg')) {
             console.log('Uploaded file:', file);
-            // כאן ניתן להוסיף לוגיקה לטיפול בהעלאת התמונה
         } else {
             alert('יש להעלות קובץ מסוג JPG או JPEG בלבד.');
         }
     };
 
     const handleSubmit = () => {
-        navigate('/StaffRegister2', { state: details });
+        navigate('/EditProfile');
     };
 
     return (
         <>
             <form>
-                <div  className='registerdiv'>
+                <div className='registerdiv'>
                     <h2 style={{ textAlign: 'center', margin: 0 }}> פרטים אישיים {details.firstName} </h2>
                 </div>
                 <TextField
@@ -61,6 +55,7 @@ export default function EditProfileChild() {
                     label="שם פרטי"
                     value={details.firstName}
                     InputProps={{ readOnly: true }}
+                    className='register-textfield'
                     variant="outlined"
                 />
                 <TextField
@@ -69,29 +64,16 @@ export default function EditProfileChild() {
                     label="שם משפחה"
                     value={details.lastName}
                     InputProps={{ readOnly: true }}
+                    className='register-textfield'
                     variant="outlined"
                 />
-                <Button
-                    variant="contained"
-                    component="label"
-                    fullWidth
-                    color="primary"
-                    sx={{ mt: 2, mb: 2 }}
-                >
-                    העלאת תמונה
-                    <input
-                        type="file"
-                        accept="image/jpeg,image/jpg"
-                        hidden
-                        onChange={handleFileUpload}
-                    />
-                </Button>
                 <TextField
                     fullWidth
                     margin="normal"
                     label="תעודת זהות"
                     value={details.idNumber}
                     InputProps={{ readOnly: true }}
+                    className='register-textfield'
                     variant="outlined"
                 />
                 <TextField
@@ -100,27 +82,54 @@ export default function EditProfileChild() {
                     label="תאריך לידה"
                     value={details.birthDate}
                     InputProps={{ readOnly: true }}
-                    variant="outlined"
-                />
-                <TextField
-                    fullWidth
-                    margin="normal"
-                    label="מספר טלפון"
-                    value={details.phoneNumber}
-                    onChange={handlePhoneNumberChange}
+                    className='register-textfield'
                     variant="outlined"
                 />
                 <Button
-                    fullWidth
+                    component="label"
+                    role={undefined}
                     variant="contained"
-                    color="primary"
-                    sx={{ mt: 2 }}
+                    tabIndex={0}
+                    startIcon={<CloudUploadIcon />}
+                    sx={{
+                        margin: '20px',
+                        backgroundColor: '#076871',
+                        '&:hover': {
+                            backgroundColor: '#6196A6',
+                        }
+                    }}        >
+                    העלאת תמונת פרופיל
+                    <input
+                        type="file"
+                        name="file"
+                        style={{ display: 'none' }}
+                        accept="image/png, image/jpeg"
+                        onChange={handleFileUpload}
+                    />
+                </Button>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    onClick={() => navigate('/Allergies')}
+                >
+                    אלרגיות
+                </Button>
+                <Button
+                    type="submit"
+                    variant="contained"
                     onClick={handleSubmit}
                 >
-                    המשך
+                    אישור
                 </Button>
             </form>
-            {Efooter}
+            <Button
+                variant="text"
+                color="primary"
+                onClick={() => navigate(-1)}
+            >
+                <ArrowForwardIosOutlinedIcon />
+            </Button>
+            {Efooterp}
         </>
     );
 }

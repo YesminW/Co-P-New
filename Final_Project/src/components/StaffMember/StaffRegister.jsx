@@ -1,7 +1,7 @@
 import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Efooter from '../../Elements/Efooter';
+import EfooterS from '../../Elements/EfooterS';
 
 import '../../assets/StyleSheets/RegisterStaff.css';
 
@@ -120,7 +120,7 @@ export default function StaffRegister() {
                     המשך
                 </Button>
             </form>
-            {Efooter}
+            {EfooterS}
         </>
     );
 }

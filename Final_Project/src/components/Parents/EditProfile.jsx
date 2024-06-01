@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Efooter from '../../Elements/Efooter';
+import Efooter from '../../Elements/EfooterP';
 
 import '../../assets/StyleSheets/EditProfileP.css';
 

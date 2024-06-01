@@ -10,12 +10,12 @@ import RestaurantMenuOutlinedIcon from '@mui/icons-material/RestaurantMenuOutlin
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 
-const Efooter =
+const Efooterp =
     <div className="footer-icons">
-        <Link style={{width: '10%'}} to="/MainStaffMember">
+        <Link style={{width: '10%'}} to="/MainParent">
             <img src={logo} alt="My Logo" className="logofooter" />
         </Link>
-        <Link to="/MainStaffMember">
+        <Link to="/MainParent">
             <IconButton >
                 <People className="footer-icon" />
             </IconButton>
@@ -40,4 +40,4 @@ const Efooter =
         </IconButton>
     </div>
 
-export default Efooter;
+export default Efooterp;

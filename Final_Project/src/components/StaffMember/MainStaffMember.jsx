@@ -7,7 +7,7 @@ import NavigationDots from './NavigationDots';
 
 
 import Elogo1 from '../../Elements/Elogo1';
-import Efooter from '../../Elements/Efooter';
+import EfooterS from '../../Elements/EfooterS';
 import '../../assets/StyleSheets/MainStaff.css';
 import { Button } from '@mui/material';
 
@@ -78,7 +78,7 @@ export default function MainStaffMember() {
         </div>
       </div>
       <NavigationDots activeIndex={0} />
-      {Efooter}
+      {EfooterS}
     </div>
   );
 }

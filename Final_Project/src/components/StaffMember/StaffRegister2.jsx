@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Efooter from '../../Elements/Efooter';
+import EfooterS from '../../Elements/EfooterS';
 import '../../assets/StyleSheets/RegisterStaff.css';
 
 export default function StaffRegister2() {
@@ -111,7 +111,7 @@ export default function StaffRegister2() {
           אישור
         </Button>
       </form>
-      {Efooter}
+      {EfooterS}
     </>
   );
 }

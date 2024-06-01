@@ -6,7 +6,7 @@ import he from 'date-fns/locale/he';
 
 
 import Elogo1 from '../../Elements/Elogo1';
-import Efooter from '../../Elements/Efooter';
+import Efooter from '../../Elements/EfooterP';
 import '../../assets/StyleSheets/MainStaff.css';
 
 

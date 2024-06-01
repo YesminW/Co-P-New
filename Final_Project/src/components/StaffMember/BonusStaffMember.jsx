@@ -6,7 +6,7 @@ import NavigationDots from './NavigationDots';
 
 import '../../assets/StyleSheets/BonusStaff.css'
 
-import Efooter from '../../Elements/Efooter';
+import EfooterS from '../../Elements/EfooterS';
 
 export default function BonusStaffMember() {
     const navigate = useNavigate();
@@ -41,7 +41,7 @@ export default function BonusStaffMember() {
                 </Link>
             </footer>
             <NavigationDots activeIndex={1} />
-            {Efooter}
+            {EfooterS}
         </div>
     );
 }

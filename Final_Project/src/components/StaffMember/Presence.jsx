@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Container, Typography, IconButton, Avatar, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import Efooter from '../../Elements/Efooter';
+import EfooterS from '../../Elements/EfooterS';
 
 import '../../assets/StyleSheets/Presence.css';
 
@@ -61,7 +61,7 @@ export default function Presence() {
                     </Box>
                 ))}
             </Box>
-            {Efooter}
+            {EfooterS}
         </Container>
     );
 }
