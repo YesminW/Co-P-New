@@ -24,6 +24,7 @@ import EditProfile from './components/Parents/EditProfile'
 
 import './assets/StyleSheets/Register.css'
 import './assets/StyleSheets/Main.css'
+import './App.css'
 
 
 

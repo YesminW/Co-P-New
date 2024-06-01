@@ -10,7 +10,7 @@ import '../assets/StyleSheets/Main.css'
 
 export default function Main() {
     return (
-        <div className="login-container">
+        <div>
             {Elogo}
             <br />
             <h1 className="loginh1">מי אתה/את?</h1>

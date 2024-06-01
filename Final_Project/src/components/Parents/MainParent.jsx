@@ -3,13 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import he from 'date-fns/locale/he';
-import { useSwipeable } from 'react-swipeable';
 
 
 import Elogo1 from '../../Elements/Elogo1';
 import Efooter from '../../Elements/Efooter';
 import '../../assets/StyleSheets/MainStaff.css';
-import { Button } from '@mui/material';
 
 
 export default function MainParent() {
@@ -44,14 +42,8 @@ export default function MainParent() {
     }
   };
 
-  const handlers = useSwipeable({
-    onSwipedRight: () => navigate('/BonusStaffMember'),
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true
-  });
-
-  return (
-    <div className="home-container" {...handlers}>
+    return (
+    <div>
       {Elogo1}
       <br />
       <div className='info-card'>
